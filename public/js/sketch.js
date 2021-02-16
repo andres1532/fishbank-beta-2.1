@@ -345,7 +345,7 @@ function preload() {
     ShipImgGrua = loadImage('/public/Assets/images/BarcoGrua.png');
 
     //olas
-    spritedata = loadJSON('Capitan P5/JsonOlas/Hero.json');
+    spritedata = loadJSON('/public/Capitan P5/JsonOlas/Hero.json');
     spritesheet = loadImage('/public/Assets/images/ola2.PNG');
 }
 
