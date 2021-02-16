@@ -766,7 +766,7 @@ class Ship {
 
         let RandomZone = Math.floor(Math.random() * 3);
 
-        //zonas de pesca
+        //zonas de pesca para corregir
         if (this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 ||
             shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 ||
             shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350) {
