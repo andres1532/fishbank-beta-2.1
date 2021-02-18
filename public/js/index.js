@@ -115,7 +115,7 @@ window.onload = () => {
 
 
         //redirección
-        window.location.assign("/Public/Pagina/Capitan.html")
+        window.location.assign("/Capitan.html")
 
     }
 
