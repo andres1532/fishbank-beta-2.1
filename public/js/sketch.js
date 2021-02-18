@@ -766,38 +766,7 @@ class Ship {
 
         let RandomZone = Math.floor(Math.random() * 3);
 
-        /*switch(RandomZone){
-
-          case 0:
-          //zonas de pesca en zona costera
-          
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170){
-            //this.s += 0.09;
-            this.s += 0.01;
-            console.log(this.s);
-          }
-          break;
-
-          case 1:
-
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300){
-            //this.s += 0.01;
-            this.s += 0.02;
-            console.log(this.s);
-          }
-          break;
-
-          case 2:
-            
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
-            //this.s += 0.05;
-            this.s += 0.03;
-            console.log(this.s);
-          }
-          break;
-
-        }*/
-
+        //zonas de pesca para corregir
         if (this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 ||
             shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 ||
             shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350) {
