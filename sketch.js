@@ -789,7 +789,7 @@ class Ship{
     if(this.s <= 0){
       //image(ShipImgGrua, this.xg, this.yg);
 
-      //Grua--------------------------------****REVISAR***------------------------------------
+      //Grua--------------------------------****REVISAR***-------------------------------------
       let Mensaje2 = text('Uno de tus barcos sea quedado sin combustible, debes solicitar una grua');
       fill(255, 255, 255);
       rect(1150,500, 200, 100);
