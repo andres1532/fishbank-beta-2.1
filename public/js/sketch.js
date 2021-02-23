@@ -339,20 +339,21 @@ let ContadorPesca;
 //----------------------------------------------PRELOAD------------------------------------------------------------------
 function preload() {
     //barcos
-    ShipImg = loadImage('/public/Assets/images/Sprite1.png');
-    ShipImg2 = loadImage('/public/Assets/images/Sprite2.png');
+    ShipImg = loadImage('/Assets/images/Sprite1.png');
+    ShipImg2 = loadImage('/Assets/images/Sprite2.png');
 
-    ShipImgGrua = loadImage('/public/Assets/images/BarcoGrua.png');
+    ShipImgGrua = loadImage('/Assets/images/BarcoGrua.png');
 
     //olas
-    spritedata = loadJSON('/public/Capitan P5/JsonOlas/Hero.json');
-    spritesheet = loadImage('/public/Assets/images/ola2.PNG');
+    spritedata = loadJSON('/Capitan P5/JsonOlas/Hero.json');
+    spritesheet = loadImage('/Assets/images/ola2.PNG');
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
 function setup() {
-    createCanvas(1366, 695);
+    let renderer = createCanvas(1366, 695);
 
+    renderer.parent("pesca-container");
     //Barcos
     shipLv1 = new Ship(x1, y1);
     shipLv2 = new Ship(x2, y2);

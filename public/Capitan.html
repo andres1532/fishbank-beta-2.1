@@ -4,15 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Sketch</title>
 
     <link rel="stylesheet" type="text/css" href="css/capitan.css">
 
-    <script src="/public/libraries/p5.min.js"></script>
-
+    <script src="/libraries/p5.min.js"></script>
     <!--------------------------------------por ahora no hay sonido------------------------------------------>
-    <script src="/public/libraries/p5.sound.min.js"></script>
+    <script src="/libraries/p5.sound.min.js"></script>
 
 
 </head>
@@ -20,12 +18,18 @@
 <body>
     <!-------------------------aqui se ponen la pantalla del capitan---------------------->
     <div>
+        <div id="pesca-container">
+            <script src="/libraries/p5.min.js"></script>
+            <script src="js/sketch.js"></script>
+        </div>
 
+        <div id="chat-container">
+
+        </div>
 
     </div>
     <div>
         <!-----------------------------------aqui inicia el chat-------------------------------->
-
         <div class="chat-container" style="float:right;">
             <header class="chat-header">
 
@@ -46,7 +50,8 @@
             <div class="chat-F-container">
                 <form id="chatF">
                     <input id="msg" type="text" placeholder="Enter Message" autocomplete="off" />
-                    <button class="btn-enviar"><i class="fas fa-paper-plane"></i> Send</button>
+                    <button class="btn-enviar"><i class="fas
+                                fa-paper-plane"></i> Send</button>
                 </form>
 
             </div>
@@ -55,10 +60,42 @@
 
         </div>
     </div>
-    <script src="/public/js/sketch.js"></script>
+    <script src="/js/sketch.js"></script>
 
 
 
 </body>
+
+<footer>
+    <!-----------------------------CHAT-------------------------------->
+    <div class="chat-btn" id="chat-container">
+        <img class="chat-btn-burbuja" onclick="OpenChat()" src="/imagenes/charla.png">
+
+        <div class="chat-container-iframe" id="chat-container-iframe" style="display:none">
+            <iframe src="http://127.0.0.1:5502/public/Chat.html" height="100%" width="100%" scrolling="yes" class="chat-iframe" id="chat-iframe">
+
+                
+            </iframe>
+
+            <div></div>
+
+            <script>
+                function openChat() {
+                    var DivStyle = document.getElementById("chat-container-iframe").style.display;
+
+                    var Visible = DivStyle === "none" ? true : DivStyle == "" ? true : false;
+                    document.getElementById("chat-container-iframe").style.display = Visible ? "block" : "none";
+                }
+
+                function changeIframe(url) {
+
+                }
+            </script>
+
+
+        </div>
+    </div>
+
+</footer>
 
 </html>
