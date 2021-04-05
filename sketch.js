@@ -772,6 +772,9 @@ class Ship{
   //gasolina
   Contador(){
 
+    var PopUpCrane = document.getElementById(Popup);
+    var PopValue = document.getElementById('PopCraneValue');
+
     //Mermar Gasolina
     //console.log(shipLv1.x1, shipLv1.y1); //prueba de variables
     if(this.s > 0 && shipLv1.x1 != 50 && shipLv1.y1 != 135){
@@ -786,34 +789,20 @@ class Ship{
     }
 
     //aparicion grua
-    if(this.s <= 0){
-      //image(ShipImgGrua, this.xg, this.yg);
+    if(this.s <= 0 && PopValue){
+      image(ShipImgGrua, this.xg, this.yg);
 
-      //Grua--------------------------------****REVISAR***-------------------------------------
-      let Mensaje2 = text('Uno de tus barcos sea quedado sin combustible, debes solicitar una grua');
-      fill(255, 255, 255);
-      rect(1150,500, 200, 100);
-
-      
-      ButtonCrane = createButton("Aceptar");
-      ButtonCrane.size(80,25);
-      ButtonCrane.position(1210,570);//1150,550
-      ButtonCrane.style("font-family", "segoe ui");
-      ButtonCrane.style("font-size", "15px");
-
-    }
-
-    if(ButtonCrane == true){
+      PopUpCrane.classList.add('o-active');
       this.Crane();
-      console.log('hola mundo');
     }
+
+
 
   }
 
-  //Grua--------------------------------****REVISAR***------------------------------------
+  //Grua--------------------------------****REVISAR***--------------------------------------
   Crane(){
-    image(ShipImgGrua, this.xg, this.yg);
-    ButtonCrane.mousePressed() = true;
+    //image(ShipImgGrua, this.xg, this.yg);
   }
 
   //pesca
@@ -911,7 +900,7 @@ class Ship{
     this.s = 0;
   }
 
-  //-----------------------------------------------------FIN BARRAS DE PROGRESO------------------------------------
+  //-----------------------------------------------------FIN BARRAS DE PROGRESO-------------------------------------
 
 }
 
