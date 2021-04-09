@@ -315,6 +315,9 @@ let ShipImgGrua;
 let ship;
 let Txtzone;
 
+//variables para boton de solicitud de grua
+let ButtonCrane = false;
+
 //variables HOVER
 var distance;
 //var b;
@@ -339,21 +342,20 @@ let ContadorPesca;
 //----------------------------------------------PRELOAD------------------------------------------------------------------
 function preload() {
     //barcos
-    ShipImg = loadImage('/Assets/images/Sprite1.png');
-    ShipImg2 = loadImage('/Assets/images/Sprite2.png');
+    ShipImg = loadImage('/public/Assets/images/Sprite1.png');
+    ShipImg2 = loadImage('/public/Assets/images/Sprite2.png');
 
-    ShipImgGrua = loadImage('/Assets/images/BarcoGrua.png');
+    ShipImgGrua = loadImage('/public/Assets/images/BarcoGrua.png');
 
     //olas
-    spritedata = loadJSON('/Capitan P5/JsonOlas/Hero.json');
-    spritesheet = loadImage('/Assets/images/ola2.PNG');
+    spritedata = loadJSON('/public/CapitanP5/JsonOlas/Hero.json');
+    spritesheet = loadImage('/public/Assets/images/ola2.PNG');
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
 function setup() {
-    let renderer = createCanvas(1366, 695);
+    createCanvas(1366, 695);
 
-    renderer.parent("pesca-container");
     //Barcos
     shipLv1 = new Ship(x1, y1);
     shipLv2 = new Ship(x2, y2);
@@ -405,7 +407,7 @@ function draw() {
     Port();
 
     //----------------------pruebas para delimitar zonas de pesca
-    console.log(shipLv1.x1, shipLv1.y1);
+    /*console.log(shipLv1.x1,shipLv1.y1);
 
     //rectangulo 1
     fill(255, 255, 255);
@@ -417,7 +419,7 @@ function draw() {
 
     //rectangulo 3
     fill(50, 50, 50);
-    rect(200, 450, 100, 220);
+    rect(200, 450, 100, 220);*/
 
     //-----------------------fin pruebas para delimitar zonas de pesca
 
@@ -443,6 +445,7 @@ function draw() {
 
     Zone(); //Informacion navegacion por niveles
 
+    console.log(mouseX, mouseY);
 }
 
 //--------------------------------------------------PUERTO-----------------------------------------------------------
@@ -473,29 +476,6 @@ function Port() {
     fill(150, 10, 10);
     rect(30, 560, 50, 50);
 }
-
-
-/*function Move(){
-  
-
-  if(mouseIsPressed){ 
-      if(mouseX > x){
-        x++;
-      }
-      if(mouseX < x){   
-        x--;
-      }
-      
-      if(mouseY > y){
-        y++;
-      }
-  
-      if(mouseY < y){
-        y--;
-    }
-    
-  } 
-}*/
 
 function mousePressed() {
 
@@ -622,11 +602,14 @@ class Ship {
 
     Move() {
 
+        let LimitX1 = 301;
+        let LimiteInfY1 = 8;
+        let LimiteSupY2 = 580;
+
         if (mouseIsPressed) {
 
             if (mouseX > this.x1) {
                 this.x1++;
-
             }
 
             if (mouseX < this.x1) {
@@ -637,13 +620,18 @@ class Ship {
                 this.y1++;
             }
 
-            if (mouseY < this.y1) {
+            if (mouseY < this.y1 || this.y1 >= LimiteSupY2) {
                 this.y1--;
             }
 
             //limites de movimiento
-            if (this.x1 >= 301) {
+            if (this.x1 >= LimitX1) {
                 this.x1 = 300;
+            }
+
+            if (this.y1 <= LimiteInfY1) {
+                this.y1 = 10;
+
             }
 
         }
@@ -652,7 +640,7 @@ class Ship {
     //--------------------HOVER------------------------
     InformationShip() {
         distance = dist(mouseX, mouseY, this.x1, this.y1)
-        if (distance >= 20 && distance <= 80) {
+        if (distance >= 20 && distance <= 80 && this.y1 < 458) {
             //b=255
             fill(255, 255, 255);
             rect(this.x1, this.y1 + 70, 200, 100);
@@ -670,6 +658,16 @@ class Ship {
             text(Mensaje, this.x1, this.y1 - 75, 100, 100);
         }
 
+        if (distance >= 20 && distance <= 80 && this.y1 > 458) {
+            //b=255
+            fill(255, 255, 255);
+            rect(this.x1, this.y1 - 110, 200, 100);
+
+            //barras de progreso Pesca y Gasolina
+            this.ProgressbarGas();
+            this.ProgressbarFishing();
+        }
+
     }
 
     //---------------------------------------BARRAS DE PROGRESO GASOLINA Y PESCA ---------------------------------------
@@ -680,20 +678,36 @@ class Ship {
         let progreso = map(valorInicial, 0, 100, 0, 150);
 
         //Gasolina
-        fill(0);
-        textSize(12);
-        textFont('segoe ui');
-        let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 85);
+        if (this.y1 < 458) {
 
-        fill(255, 70, 35);
-        rect(this.x1 + 20, this.y1 + 95, progreso, 20, 15);
-        //noStroke();
-        //noFill();
-        //rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);
+            fill(0);
+            textSize(12);
+            textFont('segoe ui');
+            let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 85);
+
+            fill(255, 70, 35);
+            rect(this.x1 + 20, this.y1 + 95, progreso, 20, 15);
+            //noStroke();
+            //noFill();
+            //rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);
+        }
 
         if (floor(random(0)) == 100) {
             Contador.reset();
         }
+
+        if (this.y1 > 458) {
+
+            //Gasolina
+            fill(0);
+            textSize(12);
+            textFont('segoe ui');
+            let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 - 90);
+
+            fill(255, 70, 35);
+            rect(this.x1 + 20, this.y1 - 80, progreso, 20, 15);
+        }
+
     }
 
     ProgressbarFishing() {
@@ -702,18 +716,37 @@ class Ship {
         let valorInicialPesca = round(ContadorPesca.s);
         let progresoPesca = map(valorInicialPesca, 0, 100, 0, 150);
 
-        //Pesca
-        fill(0);
-        textSize(12);
-        textFont('segoe ui');
-        let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 130);
+        if (this.y1 < 458) {
 
-        fill(50, 50, 255);
-        stroke(100, 100, 100);
-        rect(this.x1 + 20, this.y1 + 140, progresoPesca, 20, 15);
-        noFill();
-        rect(this.x1 + 20, this.y1 + 95, 150, 20, 15); //cuadro sin relleno
-        //noStroke();
+            //Pesca
+            fill(0);
+            textSize(12);
+            textFont('segoe ui');
+            let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 130);
+
+            fill(50, 50, 255);
+            stroke(100, 100, 100);
+            rect(this.x1 + 20, this.y1 + 140, progresoPesca, 20, 15);
+            noFill();
+            rect(this.x1 + 20, this.y1 + 95, 150, 20, 15); //cuadro sin relleno
+            //noStroke();
+        }
+
+        if (this.y1 > 458) {
+
+            //Pesca
+            fill(0);
+            textSize(12);
+            textFont('segoe ui');
+            let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 - 45);
+
+            fill(50, 50, 255);
+            stroke(100, 100, 100);
+            rect(this.x1 + 20, this.y1 - 35, progresoPesca, 20, 15);
+            noFill();
+            rect(this.x1 + 20, this.y1 - 80, 150, 20, 15); //cuadro sin relleno
+            //noStroke();
+        }
 
         if (floor(random(0)) == 100) {
             ContadorPesca.reset();
@@ -740,11 +773,14 @@ class Ship {
     //gasolina
     Contador() {
 
+        var PopUpCrane = document.getElementById(Popup);
+        var PopValue = document.getElementById('PopCraneValue');
+
         //Mermar Gasolina
         //console.log(shipLv1.x1, shipLv1.y1); //prueba de variables
         if (this.s > 0 && shipLv1.x1 != 50 && shipLv1.y1 != 135) {
-            this.s -= 0.005;
-            //  this.s -= 0.5;
+            //this.s -= 0.005;
+            this.s -= 1;
         }
 
         //Tanquear Barco
@@ -754,47 +790,104 @@ class Ship {
         }
 
         //aparicion grua
-        if (this.s <= 0) {
+        if (this.s <= 0 && PopValue) {
             image(ShipImgGrua, this.xg, this.yg);
-            //fill(255, 255, 255);
-            //rect(this.x1, this.y1 + 70, 200, 100);
+
+            PopUpCrane.classList.add('o-active');
+            this.Crane();
         }
 
+
+
+    }
+
+    //Grua--------------------------------****REVISAR***--------------------------------------
+    Crane() {
+        //image(ShipImgGrua, this.xg, this.yg);
     }
 
     //pesca
     Fishing() {
 
-        let RandomZone = Math.floor(Math.random() * 3);
+        //let RandomZone = Math.floor(Math.random() * 3);
+        let RandomZone1 = random(0, 0.01);
+        let RandomZone2 = random(0, 0.02);
+        let RandomZone3 = random(0, 0.03);
 
-        //zonas de pesca para corregir
-        if (this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 ||
-            shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 ||
-            shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350) {
-            switch (RandomZone) {
+        if (this.s < 100 && shipLv1.x1 > 180 && shipLv1.y1 >= 8 && shipLv1.y1 < 198) {
+            this.s += RandomZone1;
+            console.log(this.s);
+        }
 
+        if (this.s < 100 && shipLv1.x1 > 180 && shipLv1.y1 >= 198 && shipLv1.y1 < 388) {
+            this.s += RandomZone2;
+            console.log(this.s);
+        }
+
+        if (this.s < 100 && shipLv1.x1 > 180 && shipLv1.y1 >= 388 && shipLv1.y1 <= 580) {
+            this.s += RandomZone3;
+            console.log(this.s);
+        }
+
+        /*switch(RandomZone){
+
+          case 0:
+          //zonas de pesca en zona costera
+          
+          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170){
+            //this.s += 0.09;
+            this.s += 0.01;
+            console.log(this.s);
+          }
+          break;
+
+          case 1:
+
+          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300){
+            //this.s += 0.01;
+            this.s += 0.02;
+            console.log(this.s);
+          }
+          break;
+
+          case 2:
+            
+          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
+            //this.s += 0.05;
+            this.s += 0.03;
+            console.log(this.s);
+          }
+          break;
+
+        }*/
+
+        /*if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 || 
+            shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 || 
+            shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
+              switch(RandomZone){
+                
                 case 0:
-                    //this.s += 0.01;
-                    this.s += 1;
-                    console.log("numero aleatorio: ", this.s);
-                    break;
+                  //this.s += 0.01;
+                  this.s += 1;
+                  console.log("numero aleatorio: ",this.s);
+                break;
 
                 case 1:
-                    //this.s += 0.02;
-                    this.s += 2;
-                    console.log(this.s);
-                    break;
+                  //this.s += 0.02;
+                  this.s += 2;
+                  console.log(this.s);
+                break;
 
                 case 2:
-                    //this.s += 0.03;
-                    this.s += 3;
-                    console.log(this.s);
-                    break;
+                  //this.s += 0.03;
+                  this.s += 3;
+                  console.log(this.s);
+                break;
 
 
-            }
+              }
 
-        }
+            }*/
 
 
         //Descargue en puerto barco nivel 1
@@ -808,7 +901,7 @@ class Ship {
         this.s = 0;
     }
 
-    //-----------------------------------------------------FIN BARRAS DE PROGRESO------------------------------------
+    //-----------------------------------------------------FIN BARRAS DE PROGRESO-------------------------------------
 
 }
 
