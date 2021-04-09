@@ -37,13 +37,7 @@ app.use(express.json())
 const jugadorRouter = require('./routes/jugadores')
 app.use('/jugadores', jugadorRouter)
 
-
-
-
 // fin base de datos
-
-
-
 
 
 // Set static folder
@@ -55,11 +49,11 @@ const botName = 'admin';
 io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {
         const user = userJoin(socket.id, username, room);
-        socket.username = user.username;
+
         socket.join(user.room);
 
         // Welcome current user
-        socket.emit('message', formatMessage(botName, ' Bienvenido al chat!'));
+        socket.emit('message', formatMessage(botName, `bienvenido al chat! ${user.username}`));
 
         // Broadcast when a user connects
         socket.broadcast
