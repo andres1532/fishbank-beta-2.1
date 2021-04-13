@@ -345,13 +345,13 @@ function preload() {
     ShipImgGrua = loadImage('/Assets/images/BarcoGrua.png');
 
     //olas
-    spritedata = loadJSON('/Capitan P5/JsonOlas/Hero.json');
+    spritedata = loadJSON('/CapitanP5/JsonOlas/Hero.json');
     spritesheet = loadImage('/Assets/images/ola2.PNG');
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
 function setup() {
-    let renderer = createCanvas(1366, 695);
+    let renderer = createCanvas(1030, 655);
 
     renderer.parent("pesca-container");
     //Barcos
