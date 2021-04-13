@@ -354,7 +354,7 @@ function preload() {
 
 //----------------------------------------------SETUP------------------------------------------------------------------
 function setup() {
-    createCanvas(1366, 695);
+    createCanvas(140, 600);
 
     //Barcos
     shipLv1 = new Ship(x1, y1);
