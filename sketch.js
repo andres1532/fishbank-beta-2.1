@@ -353,13 +353,8 @@ function preload(){
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
-<<<<<<< HEAD
 function setup() {
-    createCanvas(140, 600);
-=======
-function setup(){
-  let renderer = createCanvas(1030, 655);
->>>>>>> 79ed7c6b33c07f731d9f8bded37c88c8955c9013
+    createCanvas(1040, 600);
 
     renderer.parent("pesca-container");
 
