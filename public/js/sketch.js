@@ -340,6 +340,7 @@ let Contador;
 let ContadorPesca;
 
 //variables seleccion
+var Fleet = [];
 
 //----------------------------------------------PRELOAD------------------------------------------------------------------
 function preload() {
@@ -794,12 +795,12 @@ class Ship {
         }
 
         //aparicion grua
-        if (this.s <= 0 && PopValue) {
+        /*  if (this.s <= 0 && PopValue) {
             image(ShipImgGrua, this.xg, this.yg);
 
             PopUpCrane.classList.add('o-active');
             this.Crane();
-        }
+        }*/
 
 
 
