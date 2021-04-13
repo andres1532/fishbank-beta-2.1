@@ -829,67 +829,6 @@ class Ship {
             console.log(this.s);
         }
 
-        /*switch(RandomZone){
-
-          case 0:
-          //zonas de pesca en zona costera
-          
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170){
-            //this.s += 0.09;
-            this.s += 0.01;
-            console.log(this.s);
-          }
-          break;
-
-          case 1:
-
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300){
-            //this.s += 0.01;
-            this.s += 0.02;
-            console.log(this.s);
-          }
-          break;
-
-          case 2:
-            
-          if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
-            //this.s += 0.05;
-            this.s += 0.03;
-            console.log(this.s);
-          }
-          break;
-
-        }*/
-
-        /*if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 || 
-            shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 || 
-            shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
-              switch(RandomZone){
-                
-                case 0:
-                  //this.s += 0.01;
-                  this.s += 1;
-                  console.log("numero aleatorio: ",this.s);
-                break;
-
-                case 1:
-                  //this.s += 0.02;
-                  this.s += 2;
-                  console.log(this.s);
-                break;
-
-                case 2:
-                  //this.s += 0.03;
-                  this.s += 3;
-                  console.log(this.s);
-                break;
-
-
-              }
-
-            }*/
-
-
         //Descargue en puerto barco nivel 1
         if (this.s > 0 && shipLv1.x1 <= 80 && shipLv1.y1 <= 140) {
             this.s -= 0.1;
