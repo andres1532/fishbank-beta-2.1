@@ -1,6 +1,6 @@
 // Ejemplo implementando el metodo POST:
 
-async function postData() { const url = 'http://localhost:4000/subscribers';
+async function postData() { const url = 'http://localhost:3000/subscribers';
 const data= {name:"andres", subscribedToChannel:"equipo rojo"};
 console.log(data);
   // Opciones por defecto estan marcadas con un *

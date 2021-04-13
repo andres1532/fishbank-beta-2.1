@@ -344,14 +344,14 @@ let ContadorPesca;
 //----------------------------------------------PRELOAD------------------------------------------------------------------
 function preload() {
     //barcos
-    ShipImg = loadImage('/public/Assets/images/Sprite1.png');
-    ShipImg2 = loadImage('/public/Assets/images/Sprite2.png');
+    ShipImg = loadImage('/Assets/images/Sprite1.png');
+    ShipImg2 = loadImage('/Assets/images/Sprite2.png');
 
-    ShipImgGrua = loadImage('/public/Assets/images/BarcoGrua.png');
+    ShipImgGrua = loadImage('/Assets/images/BarcoGrua.png');
 
     //olas
-    spritedata = loadJSON('/public/CapitanP5/JsonOlas/Hero.json');
-    spritesheet = loadImage('/public/Assets/images/ola2.PNG');
+    spritedata = loadJSON('/CapitanP5/JsonOlas/Hero.json');
+    spritesheet = loadImage('/Assets/images/ola2.PNG');
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
