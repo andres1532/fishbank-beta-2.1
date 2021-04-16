@@ -33,8 +33,8 @@ router.post('/', async(req, res) => {
         res.status(400).json({ message: err.message })
     }
     res.render('public/Gerente', {
-        username: username,
-        room: room
+        username: jugador.username,
+        room: jugador.room
     });
     res.end();
 });
