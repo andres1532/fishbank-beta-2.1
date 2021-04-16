@@ -19,3 +19,14 @@ canvas {
 .chat-container {
     flex: 1;
 }
+
+/*estilos pop-up*/
+/*#pesca-container{
+    position: relative;
+}
+
+#square{
+    background-color: brown;
+    z-index: -1;
+    position: absolute;
+}*/
