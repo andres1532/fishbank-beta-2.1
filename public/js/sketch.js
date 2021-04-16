@@ -280,7 +280,6 @@ class Ship{
 //}---
 
 //----------------------------------------------------------------- intento 4 (movimiento)--------------------------------------------
-//----------------------------------------------------------------- intento 4 (movimiento)--------------------------------------------
 //Barcos
 let shipLv1 = [this.x1, this.y1];
 let shipLv2;
@@ -339,6 +338,9 @@ let heroes = [];
 let Contador;
 let ContadorPesca;
 
+//variables seleccion
+var Fleet = [];
+
 //----------------------------------------------PRELOAD------------------------------------------------------------------
 function preload(){
   //barcos
@@ -353,10 +355,11 @@ function preload(){
 }
 
 //----------------------------------------------SETUP------------------------------------------------------------------
-function setup() {
-  let renderer = createCanvas(1030, 655);
+function setup(){
 
+  let renderer = createCanvas(1365 , 691);
   renderer.parent("pesca-container");
+  //createCanvas(1366 , 695);
 
   //Barcos
   shipLv1 = new Ship(x1, y1);
@@ -443,8 +446,7 @@ function draw(){
  //llamado de metodo para ver la informacion del barco ("HOVER")
  shipLv1.InformationShip();
  shipLv1.SelectShip();
-
-
+ 
  Zone();//Informacion navegacion por niveles
 
  console.log(mouseX,mouseY);
@@ -479,13 +481,20 @@ function Port() {
   rect(30, 560, 50, 50);  
 }
 
-function mousePressed(){
+/*function mousePressed(){
 
   if(mouseX == this.x1 && mouseY == this.y1){
     fill(120,240,115);
     //console.log("select");
   }
   
+}*/
+
+function mouseClicked() {
+
+  for (var i = 0; i < Fleet.length; i++){
+    Fleet[i].SelectShip();
+ }
 }
 
 function mouseIsPressed(){
@@ -521,7 +530,7 @@ function setGradient(x, y, w, h, ColorIzquierdo, ColorDerecho){
 
 }
 
-//-----------------
+//----------------------------------------Fin DEGRADADO----------------------------------------------------------------
 
 //-------------------------------------------CLASE BARCO-------------------------------------------------------------
 class Ship{
@@ -548,6 +557,7 @@ class Ship{
 
     //prueba seleccion
     this.r = r;
+
     
   }
 
@@ -556,9 +566,66 @@ class Ship{
     image(ShipImg2, this.x2, this.y2);
     //image(ShipImgGrua, this.xg, this.yg);
   }
-
+  
   //---------------------------------------prueba seleccion-------------------------------------------
-  SelectShip(x1, y1){
+  SelectShip = function() {
+    var Mousedistance = dist(mouseX, mouseY, this.x1, this.y1);
+    //recuadro de seleccion
+    /*if (keyIsPressed === true) {
+      console.log("presionanda")
+
+    } else {
+        noFill();
+        rect(this.x1 - 5, this.y1 - 5, 90, 65);
+
+        if (keyIsPressed === false){
+          console.log("66666")
+          rect(this.x1 - 5, this.y1 - 5, 90, 65);
+          fill(0,255,0);
+        }
+    }*/
+   
+    /*if(Mousedistance >= 20 && Mousedistance <= 80){
+      console.log("presionanda")
+      noFill();
+      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+
+      if(keyIsPressed === true){
+        stroke(0,255,0);
+        noFill();
+        rect(this.x1 - 5, this.y1 - 5, 90, 65);*/
+
+        /*
+        if(click == true && distance <=20 || distance >=80){
+          stroke(0,255,0);
+          rect(this.x1 - 5, this.y1 - 5, 90, 65);
+        }
+        
+      }
+    }*/
+
+    if(Mousedistance >= 20 && Mousedistance <= 80){
+      console.log("presionanda")
+      noFill();
+      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+    }
+
+    if(Mousedistance >= 20 && Mousedistance <= 80 && keyIsPressed === true){
+      stroke(0,255,0);
+      noFill();
+      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+    }
+    else{
+      console.log("nada")
+    }
+
+  }
+
+
+
+    
+
+  /*SelectShip(x1, y1){
     let distance = dist(x1, y1, this.x1, this.y1);
     let select = false;
 
@@ -578,29 +645,7 @@ class Ship{
       return select;
     }
 
-    /*
-    
-    SelectShip(px, py){
-    let distance = dist(px, py, this.x, this.y)
-    let select = false;
-
-    if(distance < this.r){
-      this.color = 0;
-      select != false;
-      console.log(select);
-      return select;
-
-    } else {
-      this.color = 255;
-      console.log(select);
-      return select;
-    }
-  }
-
-    */
-
-
-  }
+  }*/
 
   Move(){
 
@@ -776,36 +821,53 @@ class Ship{
   Contador(){
 
     let PopUpCrane = document.getElementById('Popup');
-    let PopValue = document.getElementById('PopCraneValue');
+    let PopValue = document.getElementById('square');
+
+    let BtnCrane = document.getElementById('ButtonCrane');
 
     //Mermar Gasolina
     //console.log(shipLv1.x1, shipLv1.y1); //prueba de variables
     if(this.s > 0 && shipLv1.x1 != 50 && shipLv1.y1 != 135){
+
       //this.s -= 0.005;
-        this.s -= 1;
+      this.s -= 1;
+
     }
 
     //Tanquear Barco
     if(this.s < 100 && shipLv1.x1 <= 80 && shipLv1.y1 <= 140){
+
       this.s += 0.008;
       //  this.s -= 0.5;
+
     }
 
     //aparicion grua
-    if(this.s <= 0 && PopValue){
-      image(ShipImgGrua, this.xg, this.yg);
+    if(this.s <= 0){
+      
+      
+      //image(ShipImgGrua, this.xg, this.yg);
 
-      PopUpCrane.classList.add('o-active');
+      //PopUpCrane.classList.add('o-active');
       this.Crane();
+
+      //para quitar el popup con el boton aceptar
+      /*if(){
+
+      }*/
+
+    } else{
+
+      document.getElementById("square").style.zIndex = "-1";
+
     }
-
-
 
   }
 
   //Grua--------------------------------****REVISAR***--------------------------------------
   Crane(){
     //image(ShipImgGrua, this.xg, this.yg);
+    document.getElementById("square").style.zIndex = "1";
   }
 
   //pesca
@@ -830,67 +892,6 @@ class Ship{
         this.s += RandomZone3;
         console.log(this.s);
       }
-
-    /*switch(RandomZone){
-
-      case 0:
-      //zonas de pesca en zona costera
-      
-      if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170){
-        //this.s += 0.09;
-        this.s += 0.01;
-        console.log(this.s);
-      }
-      break;
-
-      case 1:
-
-      if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300){
-        //this.s += 0.01;
-        this.s += 0.02;
-        console.log(this.s);
-      }
-      break;
-
-      case 2:
-        
-      if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
-        //this.s += 0.05;
-        this.s += 0.03;
-        console.log(this.s);
-      }
-      break;
-
-    }*/
-
-    /*if(this.s < 100 && shipLv1.x1 >= 200 && shipLv1.x1 <= 250 && shipLv1.y1 <= 170 || 
-        shipLv1.x1 >= 200 && shipLv1.x1 <= 220 && shipLv1.y1 >= 300 || 
-        shipLv1.x1 >= 200 && shipLv1.x1 <= 270 && shipLv1.y1 >= 350){
-          switch(RandomZone){
-            
-            case 0:
-              //this.s += 0.01;
-              this.s += 1;
-              console.log("numero aleatorio: ",this.s);
-            break;
-
-            case 1:
-              //this.s += 0.02;
-              this.s += 2;
-              console.log(this.s);
-            break;
-
-            case 2:
-              //this.s += 0.03;
-              this.s += 3;
-              console.log(this.s);
-            break;
-
-
-          }
-
-        }*/
-
 
       //Descargue en puerto barco nivel 1
       if(this.s > 0 && shipLv1.x1 <= 80 && shipLv1.y1 <= 140){
