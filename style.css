@@ -4,7 +4,7 @@ html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.o-Popup{
+/*.o-Popup{
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ html, body {
   visibility: hidden;
 }
 
-.o-Popup.o-active{
+.o-Popup .o-active{
   visibility: visible;
 }
 
@@ -26,4 +26,17 @@ html, body {
 
 canvas {
   display: block;
+}*/
+
+#FishingContainer{
+  position: relative;
+}
+
+#square{
+  background-color: white;
+  z-index: -1;
+  position: absolute;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  justify-content: center;
 }
