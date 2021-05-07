@@ -357,9 +357,9 @@ function preload(){
 //----------------------------------------------SETUP------------------------------------------------------------------
 function setup(){
 
-  let renderer = createCanvas(1365 , 691);
+  let renderer = createCanvas(1030 , 655);
   renderer.parent("FishingContainer");
-  createCanvas(1366 , 695);
+  
 
   //Barcos
   shipLv1 = new Ship(x1, y1);
