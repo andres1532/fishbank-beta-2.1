@@ -358,7 +358,7 @@ function preload(){
 function setup(){
 
   let renderer = createCanvas(1365 , 691);
-  renderer.parent("pesca-container");
+  renderer.parent("FishingContainer");
   //createCanvas(1366 , 695);
 
   //Barcos
