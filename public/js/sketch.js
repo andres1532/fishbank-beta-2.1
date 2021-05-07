@@ -412,8 +412,8 @@ function draw(){
  Port();
 
  //----------------------pruebas para delimitar zonas de pesca
- /*console.log(shipLv1.x1,shipLv1.y1);
-
+ console.log('Barco',shipLv1.x1,shipLv1.y1);
+/*
  //rectangulo 1
  fill(255, 255, 255);
  rect(200, 50, 100, 170);
@@ -449,7 +449,7 @@ function draw(){
  
  Zone();//Informacion navegacion por niveles
 
- console.log(mouseX,mouseY);
+ console.log('MOUSE',mouseX,mouseY);
 }
 
 //--------------------------------------------------PUERTO-----------------------------------------------------------
@@ -621,10 +621,6 @@ class Ship{
 
   }
 
-
-
-    
-
   /*SelectShip(x1, y1){
     let distance = dist(x1, y1, this.x1, this.y1);
     let select = false;
@@ -650,6 +646,7 @@ class Ship{
   Move(){
 
     let LimitX1 = 301;
+    let LimitX2 = 53;
     let LimiteInfY1 = 8;
     let LimiteSupY2 = 580;
 
@@ -678,8 +675,10 @@ class Ship{
 
         if (this.y1 <= LimiteInfY1){
            this.y1 = 10;
-           
         }
+
+        if(this.x1 <= LimitX2)
+          this.x1 = LimitX2;
 
       } 
   }
@@ -820,41 +819,17 @@ class Ship{
   //gasolina
   Contador(){
 
-    let PopUpCrane = document.getElementById('Popup');
-    let PopValue = document.getElementById('square');
-
-    let BtnCrane = document.getElementById('ButtonCrane');
-
     //Mermar Gasolina
     //console.log(shipLv1.x1, shipLv1.y1); //prueba de variables
     if(this.s > 0 && shipLv1.x1 != 50 && shipLv1.y1 != 135){
 
       //this.s -= 0.005;
       this.s -= 1;
-
-    }
-
-    //Tanquear Barco
-    if(this.s < 100 && shipLv1.x1 <= 80 && shipLv1.y1 <= 140){
-
-      this.s += 0.008;
-      //  this.s -= 0.5;
-
-    }
-
-    //aparicion grua
-    if(this.s <= 0){
-      
-      
-      //image(ShipImgGrua, this.xg, this.yg);
-
-      //PopUpCrane.classList.add('o-active');
+    
+      if(this.s <= 0){
+      this.x1 == 0;
+      document.getElementById("square").style.zIndex = "1";
       this.Crane();
-
-      //para quitar el popup con el boton aceptar
-      /*if(){
-
-      }*/
 
     } else{
 
@@ -864,10 +839,30 @@ class Ship{
 
   }
 
-  //Grua--------------------------------****REVISAR***--------------------------------------
+
+    //Tanquear Barco
+    if(this.s < 100 && shipLv1.x1 <= 100 && shipLv1.y1 <= 140){
+
+      this.s += 0.008;
+      //  this.s -= 0.5;
+      
+    }
+  }
+
+  //Grua
   Crane(){
-    //image(ShipImgGrua, this.xg, this.yg);
-    document.getElementById("square").style.zIndex = "1";
+
+    let BtnCrane = document.getElementById('PopCraneValue');
+
+    BtnCrane.onclick = () =>{
+      const BtnValue = document.getElementById('PopCraneValue');
+      const State = BtnValue.value;
+
+      if(State == BtnValue.value){
+          document.getElementById("square").style.zIndex = "-1";
+          image(ShipImgGrua, this.xg, this.yg);
+      }
+    }
   }
 
   //pesca
