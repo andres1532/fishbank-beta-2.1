@@ -359,7 +359,7 @@ function setup(){
 
   let renderer = createCanvas(1365 , 691);
   renderer.parent("FishingContainer");
-  //createCanvas(1366 , 695);
+  createCanvas(1366 , 695);
 
   //Barcos
   shipLv1 = new Ship(x1, y1);

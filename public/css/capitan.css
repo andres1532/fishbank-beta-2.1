@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
 }
@@ -8,16 +7,16 @@ canvas {
     display: block;
 }
 
-.flex-container {
+#squareContainer
+ {
     display: flex;
 }
 
-#pesca-container {
-    flex: 1;
-}
+
 
 .chat-container {
     flex: 1;
+    position: absolute;
 }
 
 /*estilos pop-up*/
@@ -36,6 +35,7 @@ canvas {
 
 #FishingContainer{
     position: relative;
+    flex: 1;
   }
   
 #square{
