@@ -4,18 +4,28 @@ const Jugador = require('../model/jugador')
 
 //getting all
 router.get('/', async(req, res) => {
-    try {
-        const jugadores = await Jugador.find()
-        res.json(jugadores)
+   try {
+        const jugadores = await Jugador.find();
+        console.log(jugadores);
+     //   res.json({text: 'esperando'});
+       res.json(jugadores);
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
 
+    
 });
 
 //get one
-router.get('/:id', getJugador, (req, res) => {
-    res.json(res.jugador)
+router.get('/:id',  async(req, res) => {
+    try {
+        const jugadores = await Jugador.find({_id: req.params.id});
+        console.log(jugadores);
+     // res.json({text: 'individual'});
+      res.json(jugadores);
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 });
 
 
