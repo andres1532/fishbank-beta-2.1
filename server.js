@@ -21,6 +21,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -34,14 +36,13 @@ db.once('open', () => console.log('connected to database'))
 
 app.use(express.json())
 
-const jugadorRouter = require('./routes/jugadores')
-app.use('/jugadores', jugadorRouter)
+const jugadoresRouter = require('./routes/jugadores')
+app.use('/jugadores', jugadoresRouter)
 
 // fin base de datos
 
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const botName = 'admin';
 

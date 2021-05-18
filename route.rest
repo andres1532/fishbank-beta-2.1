@@ -9,3 +9,7 @@ GET http://localhost:3000/jugadores/
 POST http://localhost:3000/jugadores
 Content-Type: application/json
 
+{
+    "username": "juan",
+    "equipo": "azul"
+}

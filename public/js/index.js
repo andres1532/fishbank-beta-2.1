@@ -15,7 +15,7 @@ window.onload = () => {
 
         //crear el Json de la petición
         //peticion post: utilizar fetch
-        fetch("/jugadores.js", {
+        fetch("/jugadores", {
                 method: 'post',
                 headers: {
                     "Content-type": "application/json"
@@ -39,7 +39,7 @@ window.onload = () => {
     }
 
 
-    /*
+    
         //mecanico
         document.getElementById("login-mecanico").onclick = () => {
             console.log("inicio");
@@ -115,8 +115,8 @@ window.onload = () => {
 
 
             //redirección
-            window.location.assign("/Capitan.html")
+           window.location.assign("/Capitan.html")
 
         }
-    */
+    
 };

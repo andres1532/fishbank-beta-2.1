@@ -7,10 +7,14 @@
     <title>Sketch</title>
 
     <link rel="stylesheet" type="text/css" href="css/capitan.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js" integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4=" crossorigin="anonymous"></script>
+    <script src="socket.io/socket.io.js"></script>
 
     <script src="/libraries/p5.min.js"></script>
     <!--------------------------------------por ahora no hay sonido------------------------------------------>
-    <script src="/libraries/p5.sound.min.js"></script>
+    
 
 
 </head>
@@ -21,7 +25,6 @@
 
         <div id="FishingContainer">
           <script src="libraries/p5.min.js"></script>
-          <script src="libraries/p5.sound.min.js"></script>
           <script src="sketch.js"></script>
 
           <div id="square"><!--Contenedor del mensaje gasolina-->
@@ -33,11 +36,8 @@
           </div>
 
         </div> 
-      </div>
 
-      <!-----------------------------------aqui inicia el chat-------------------------------->
-    <!--<div>
-        <div class="chat-container" style="float:right;">
+        <div class="chat-container">
             <header class="chat-header">
 
                 <a href="index.html" class="btn-salir">Leave Room</a>
@@ -63,46 +63,19 @@
 
             </div>
 
+        </div>
 
 
-        </div>-->
-    </div>
+        
+      </div>
+
+      <!-----------------------------------aqui inicia el chat-------------------------------->
+  
     <script src="/js/sketch.js"></script>
 
 
 
 </body>
 
-<!--<footer>
-    ---------------------------CHAT------------------------------
-    <div class="chat-btn" id="chat-container">
-        <img class="chat-btn-burbuja" onclick="OpenChat()" src="/imagenes/charla.png">
-
-        <div class="chat-container-iframe" id="chat-container-iframe" style="display:none">
-            <iframe src="http://127.0.0.1:5502/public/Chat.html" height="100%" width="100%" scrolling="yes" class="chat-iframe" id="chat-iframe">
-
-                
-            </iframe>
-
-            <div></div>
-
-            <script>
-                function openChat() {
-                    var DivStyle = document.getElementById("chat-container-iframe").style.display;
-
-                    var Visible = DivStyle === "none" ? true : DivStyle == "" ? true : false;
-                    document.getElementById("chat-container-iframe").style.display = Visible ? "block" : "none";
-                }
-
-                function changeIframe(url) {
-
-                }
-            </script>
-
-
-        </div>
-    </div>
-
-</footer>-->
 
 </html>
