@@ -406,7 +406,7 @@ function draw(){
  //background(29,69,182);//color de fondo azul claro
 
  //tamaño mar
- setGradient(0, 0, 1030, 655, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
+ setGradient(0, 0, 1030, 675, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
 
  mouseReleased();
  Port();
@@ -464,24 +464,24 @@ function Port() {
 
   //niveles
   //1
-  fill(150, 150, 10);
-  rect(30, 80, 50, 50);
+  fill(150, 10, 10);
+  rect(30, 0, 50, 40);
 
   //2
   fill(150, 10, 10);
-  rect(30, 200, 50, 50);
+  rect(30, 156, 50, 40);
 
   //3
   fill(150, 10, 10);
-  rect(30, 320, 50, 50);  
+  rect(30, 312, 50, 40);  
 
   //4
   fill(150, 10, 10);
-  rect(30, 440, 50, 50);
+  rect(30, 468, 50, 40);
 
   //5
   fill(150, 10, 10);
-  rect(30, 560, 50, 50);  
+  rect(30, 625, 50, 40);  
 }
 
 /*function mousePressed(){
@@ -543,8 +543,8 @@ function Zone(){
   fill(150,150,150);  
   noStroke();
   Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
-  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 700, 650);
-  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 1100, 650);
+  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 650);
+  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 650);
   }
 
 //-------------------------------------------CLASE BARCO-------------------------------------------------------------
