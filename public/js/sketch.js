@@ -386,7 +386,7 @@ function setup(){
  for (let i = 0; i < 12; i++){
       heroes[i] = new Sprite(animation, 0 , i * 48, random(0.12,   0.138));
   }
-
+//ensayo
   //inicializacion variables HOVER
   b = 200;
 
