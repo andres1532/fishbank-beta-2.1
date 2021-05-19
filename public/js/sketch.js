@@ -406,7 +406,7 @@ function draw(){
  //background(29,69,182);//color de fondo azul claro
 
  //tamaño mar
- setGradient(0, 0, 1366, 695, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
+ setGradient(0, 0, 1030, 655, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
 
  mouseReleased();
  Port();
@@ -456,7 +456,7 @@ function draw(){
 function Port() {
   //puerto
   fill(150, 10, 10);
-  rect(0, 80, 40, 530);//(margen izq, margen sup, ancho, margen der)
+  rect(0, 0, 40, 675);//(margen izq, margen sup, ancho, margen der)
   noStroke();
 
   //niveles
@@ -910,8 +910,8 @@ function Zone(){
   textFont('segoe ui');
   fill(200, 200, 200);  
   Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
-  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 700, 650);
-  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 1100, 650);
+  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 650);
+  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 650);
   }
 
 //-----------------------------------------------CLASE OLAS--------------------------------------------------------
