@@ -555,7 +555,7 @@ class Ship{
     //this.y = 135;
 
     this.x1= 50;
-    this.y1 = 135;
+    this.y1 = 45;
     
     this.x2 = 50;
     this.y2 = 255;
@@ -581,6 +581,9 @@ class Ship{
     image(ShipImg, this.x1, this.y1);
     image(ShipImg2, this.x2, this.y2);
     image(ShipImgGrua, this.xg, this.yg);
+    ShipImg.resize(50, 30);
+    ShipImg2.resize(70, 50);
+    ShipImgGrua.resize(100,80);
   }
   
   //---------------------------------------prueba seleccion-------------------------------------------
@@ -623,7 +626,7 @@ class Ship{
     if(Mousedistance >= 20 && Mousedistance <= 80){
       console.log("presionanda")
       noFill();
-      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+      rect(this.x1 - 5, this.y1 - 5, 60, 40);
     }
 
     if(Mousedistance >= 20 && Mousedistance <= 80 && keyIsPressed === true){
