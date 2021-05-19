@@ -285,8 +285,8 @@ let shipLv1 = [this.x1, this.y1];
 let shipLv2;
 
 //posicion barcos lv 1
-let x1 = 50;
-let y1 = 135;
+let x1;
+let y1;
 
 //posicion barcor lv 2
 let x2 = 50;
@@ -305,8 +305,8 @@ let y4 = 135;*/
 let y = 135;*/
 
 //posicion barco grua
-let xg = 200;
-let yg = 200;
+let xg;
+let yg;
 
 //img barcos
 let ShipImg;
@@ -412,8 +412,8 @@ function draw(){
  Port();
 
  //----------------------pruebas para delimitar zonas de pesca
- console.log('Barco',shipLv1.x1,shipLv1.y1);
-/*
+ /*console.log(shipLv1.x1,shipLv1.y1);
+
  //rectangulo 1
  fill(255, 255, 255);
  rect(200, 50, 100, 170);
@@ -440,6 +440,7 @@ function draw(){
  shipLv2.body();
  shipLv3.body();
  shipLv4.body();
+//shipGrua.Crane();//revisar
  
  shipLv1.Move();
  
@@ -449,7 +450,9 @@ function draw(){
  
  Zone();//Informacion navegacion por niveles
 
- console.log('MOUSE',mouseX,mouseY);
+ console.log(mouseX,mouseY);
+
+
 }
 
 //--------------------------------------------------PUERTO-----------------------------------------------------------
@@ -461,7 +464,7 @@ function Port() {
 
   //niveles
   //1
-  fill(150, 10, 10);
+  fill(150, 150, 10);
   rect(30, 80, 50, 50);
 
   //2
@@ -532,6 +535,18 @@ function setGradient(x, y, w, h, ColorIzquierdo, ColorDerecho){
 
 //----------------------------------------Fin DEGRADADO----------------------------------------------------------------
 
+//---------------------------------------------Nombre Zonas----------------------------------------------------------
+function Zone(){
+  //zonas del mar
+  textSize(15);
+  textFont('segoe ui');
+  fill(150,150,150);  
+  noStroke();
+  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
+  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 700, 650);
+  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 1100, 650);
+  }
+
 //-------------------------------------------CLASE BARCO-------------------------------------------------------------
 class Ship{
   constructor(s,w,r){
@@ -548,6 +563,7 @@ class Ship{
     /*this.x4 = 50;
     this.y4 = 195;*/
 
+    //posicion de la grua
     this.xg = 200;
     this.yg = 200;
 
@@ -564,7 +580,7 @@ class Ship{
   body(){
     image(ShipImg, this.x1, this.y1);
     image(ShipImg2, this.x2, this.y2);
-    //image(ShipImgGrua, this.xg, this.yg);
+    image(ShipImgGrua, this.xg, this.yg);
   }
   
   //---------------------------------------prueba seleccion-------------------------------------------
@@ -644,43 +660,43 @@ class Ship{
   }*/
 
   Move(){
-
     let LimitX1 = 301;
     let LimitX2 = 53;
     let LimiteInfY1 = 8;
     let LimiteSupY2 = 580;
 
-      if (mouseIsPressed){ 
 
-        if (mouseX > this.x1){
-            this.x1++;
-        }
+    if (mouseIsPressed){ 
 
-        if (mouseX < this.x1){   
-           this.x1--;
-        }
+      if (mouseX > this.x1){
+        this.x1++;
+      }
+
+      if (mouseX < this.x1){   
+        this.x1--;
+      }
         
-        if (mouseY > this.y1){
-            this.y1++;
-        }
+      if (mouseY > this.y1){
+        this.y1++;
+      }
     
-        if (mouseY < this.y1 || this.y1 >= LimiteSupY2){
-            this.y1--;
-        }
+      if (mouseY < this.y1 || this.y1 >= LimiteSupY2){
+          this.y1--;
+      }
 
         //limites de movimiento
-        if (this.x1 >= LimitX1){
-            this.x1 = 300;
-        }
+      if (this.x1 >= LimitX1){
+        this.x1 = 300;
+      }
 
-        if (this.y1 <= LimiteInfY1){
-           this.y1 = 10;
-        }
+      if (this.y1 <= LimiteInfY1){
+        this.y1 = 10;
+      }
 
-        if(this.x1 <= LimitX2)
-          this.x1 = LimitX2;
-
+      if(this.x1 <= LimitX2){
+        this.x1 = LimitX2;
       } 
+    } 
   }
 
   //--------------------HOVER------------------------
@@ -827,24 +843,24 @@ class Ship{
       this.s -= 1;
     
       if(this.s <= 0){
-      this.x1 == 0;
+
       document.getElementById("square").style.zIndex = "1";
       this.Crane();
 
-    } else{
+      } else{
 
-      document.getElementById("square").style.zIndex = "-1";
+        document.getElementById("square").style.zIndex = "-1";
+
+      }
 
     }
 
-  }
-
 
     //Tanquear Barco
-    if(this.s < 100 && shipLv1.x1 <= 100 && shipLv1.y1 <= 140){
+    if(this.s < 100 &&  shipLv1.x1 < 200 && shipLv1.y1 < 200){
 
-      this.s += 0.008;
-      //  this.s -= 0.5;
+      //this.s += 0.008;//este es el valor definitivo
+      this.s += 1;//valor de pruebas
       
     }
   }
@@ -854,13 +870,16 @@ class Ship{
 
     let BtnCrane = document.getElementById('PopCraneValue');
 
-    BtnCrane.onclick = () =>{
+    
+    BtnCrane.onclick = () => {
       const BtnValue = document.getElementById('PopCraneValue');
       const State = BtnValue.value;
 
       if(State == BtnValue.value){
           document.getElementById("square").style.zIndex = "-1";
           image(ShipImgGrua, this.xg, this.yg);
+          this.xg = 200;
+          this.yg = 200;
       }
     }
   }
@@ -903,16 +922,6 @@ class Ship{
 
 }
 
-//---------------------------------------------Nombre Zonas----------------------------------------------------------
-function Zone(){
-  //zonas del mar
-  textSize(15);
-  textFont('segoe ui');
-  fill(200, 200, 200);  
-  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
-  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 650);
-  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 650);
-  }
 
 //-----------------------------------------------CLASE OLAS--------------------------------------------------------
 class Sprite {
