@@ -451,15 +451,13 @@ function draw(){
  Zone();//Informacion navegacion por niveles
 
  console.log(mouseX,mouseY);
-
-
 }
 
 //--------------------------------------------------PUERTO-----------------------------------------------------------
 function Port() {
   //puerto
   fill(150, 10, 10);
-  rect(0, 0, 40, 675);//(margen izq, margen sup, ancho, margen der)
+  rect(0, windowHeight, 40, 675);//(margen izq, margen sup, ancho, margen der)
   noStroke();
 
   //niveles
@@ -579,7 +577,10 @@ class Ship{
 
   body(){
     image(ShipImg, this.x1, this.y1);
+    ShipImg.resize(50, 30);
+
     image(ShipImg2, this.x2, this.y2);
+
     image(ShipImgGrua, this.xg, this.yg);
   }
   
@@ -702,7 +703,7 @@ class Ship{
   //--------------------HOVER------------------------
   InformationShip(){
   distance = dist(mouseX, mouseY, this.x1, this.y1)
-    if (distance >= 20 && distance <= 80 && this.y1 < 458){
+    if (distance >= 40 && distance <= 80 && this.y1 < 458){
         //b=255
         fill(255, 255, 255);
         rect(this.x1, this.y1 + 70, 200, 100);
@@ -723,7 +724,7 @@ class Ship{
     if(distance >= 20 && distance <= 80 && this.y1 > 458){
       //b=255
       fill(255, 255, 255);
-      rect(this.x1, this.y1 - 110, 200, 100);
+      rect(this.x1, this.y1, 200, 100);
       
       //barras de progreso Pesca y Gasolina
       this.ProgressbarGas();
@@ -767,7 +768,7 @@ class Ship{
       let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 - 90);
       
       fill(255, 70, 35);
-      rect(this.x1 + 20, this.y1 - 80, progreso, 20, 15);
+      rect(this.x1 + 20, this.y1, progreso, 20, 15);
     }
 
   }
@@ -790,7 +791,7 @@ class Ship{
       stroke(100, 100, 100);
       rect(this.x1 + 20, this.y1 + 140, progresoPesca, 20, 15);
       noFill();
-      rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);//cuadro sin relleno
+      rect(this.x1 + 20, this.y1 + 55, 150, 20, 15);//cuadro sin relleno
       //noStroke();
     }
 
@@ -927,8 +928,8 @@ class Ship{
 class Sprite {
   constructor(animation, x, y, speed, distanciaOla) {
     this.x = 250;
-    this.y = y;
-    this.distanciaOla = 500;
+    this.y = y + 50;
+    this.distanciaOla = 0;
     this.animation = animation;
     this.w = this.animation[0].width;
     this.len = this.animation.length;
@@ -946,7 +947,7 @@ class Sprite {
     this.x += this.speed * 4;
 
     if (this.x > width) {
-      this.x = 250;
+      this.x = 20;
     }
   }
 }
