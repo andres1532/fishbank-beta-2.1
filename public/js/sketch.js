@@ -383,7 +383,7 @@ function setup(){
   }
 
   //numero de olas
- for (let i = 0; i < 13; i++){
+ for (let i = 0; i < 12; i++){
       heroes[i] = new Sprite(animation, 0 , i * 48, random(0.12,   0.138));
   }
 
@@ -406,7 +406,7 @@ function draw(){
  //background(29,69,182);//color de fondo azul claro
 
  //tamaño mar
- setGradient(0, 0, 1030, 655, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
+ setGradient(0, 0, 1030, 675, ColorIzquierdo, ColorDerecho, X_AXIS);//(posicion en x, posicion en y, ancho, alto)
 
  mouseReleased();
  Port();
@@ -462,24 +462,24 @@ function Port() {
 
   //niveles
   //1
-  fill(150, 150, 10);
-  rect(30, 80, 50, 50);
+  fill(150, 10, 10);
+  rect(30, 0, 50, 40);
 
   //2
   fill(150, 10, 10);
-  rect(30, 200, 50, 50);
+  rect(30, 156, 50, 40);
 
   //3
   fill(150, 10, 10);
-  rect(30, 320, 50, 50);  
+  rect(30, 312, 50, 40);  
 
   //4
   fill(150, 10, 10);
-  rect(30, 440, 50, 50);
+  rect(30, 468, 50, 40);
 
   //5
   fill(150, 10, 10);
-  rect(30, 560, 50, 50);  
+  rect(30, 625, 50, 40);  
 }
 
 /*function mousePressed(){
@@ -538,11 +538,12 @@ function Zone(){
   //zonas del mar
   textSize(15);
   textFont('segoe ui');
-  fill(150,150,150);  
+  textStyle(BOLD);
+  fill(255,233,0);  
   noStroke();
-  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
-  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 700, 650);
-  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 1100, 650);
+  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 15);
+  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 15);
+  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 15);
   }
 
 //-------------------------------------------CLASE BARCO-------------------------------------------------------------
@@ -553,7 +554,7 @@ class Ship{
     //this.y = 135;
 
     this.x1= 50;
-    this.y1 = 135;
+    this.y1 = 45;
     
     this.x2 = 50;
     this.y2 = 255;
@@ -582,6 +583,9 @@ class Ship{
     image(ShipImg2, this.x2, this.y2);
 
     image(ShipImgGrua, this.xg, this.yg);
+    ShipImg.resize(50, 30);
+    ShipImg2.resize(70, 50);
+    ShipImgGrua.resize(100,80);
   }
   
   //---------------------------------------prueba seleccion-------------------------------------------
@@ -624,13 +628,13 @@ class Ship{
     if(Mousedistance >= 20 && Mousedistance <= 80){
       console.log("presionanda")
       noFill();
-      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+      rect(this.x1 - 5, this.y1 - 5, 60, 40);
     }
 
     if(Mousedistance >= 20 && Mousedistance <= 80 && keyIsPressed === true){
       stroke(0,255,0);
       noFill();
-      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+      rect(this.x1 - 5, this.y1 - 5, 60, 40);
     }
     else{
       console.log("nada")
@@ -706,7 +710,7 @@ class Ship{
     if (distance >= 40 && distance <= 80 && this.y1 < 458){
         //b=255
         fill(255, 255, 255);
-        rect(this.x1, this.y1 + 70, 200, 100);
+        rect(this.x1, this.y1 + 50, 200, 100);
 
         //barras de progreso Pesca y Gasolina
         this.ProgressbarGas();
@@ -724,7 +728,11 @@ class Ship{
     if(distance >= 20 && distance <= 80 && this.y1 > 458){
       //b=255
       fill(255, 255, 255);
+<<<<<<< HEAD
       rect(this.x1, this.y1, 200, 100);
+=======
+      rect(this.x1, this.y1 - 0, 200, 100);
+>>>>>>> e73f315b59dfa586675dda513cdc0a71aecf8bd3
       
       //barras de progreso Pesca y Gasolina
       this.ProgressbarGas();
@@ -746,10 +754,10 @@ class Ship{
       fill(0);
       textSize(12);
       textFont('segoe ui');
-      let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 85);
+      let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 65);
       
       fill(255, 70, 35);
-      rect(this.x1 + 20, this.y1 + 95, progreso, 20, 15);
+      rect(this.x1 + 20, this.y1 + 75, progreso, 20, 15);
       //noStroke();
       //noFill();
       //rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);
@@ -785,13 +793,17 @@ class Ship{
       fill(0);
       textSize(12);
       textFont('segoe ui');
-      let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 130);
+      let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 110);
       
       fill(50, 50, 255);  
       stroke(100, 100, 100);
-      rect(this.x1 + 20, this.y1 + 140, progresoPesca, 20, 15);
+      rect(this.x1 + 20, this.y1 + 120, progresoPesca, 20, 15);
       noFill();
+<<<<<<< HEAD
       rect(this.x1 + 20, this.y1 + 55, 150, 20, 15);//cuadro sin relleno
+=======
+      rect(this.x1 + 20, this.y1 + 75, 150, 20, 15);//cuadro sin relleno
+>>>>>>> e73f315b59dfa586675dda513cdc0a71aecf8bd3
       //noStroke();
     }
 
@@ -929,7 +941,11 @@ class Sprite {
   constructor(animation, x, y, speed, distanciaOla) {
     this.x = 250;
     this.y = y + 50;
+<<<<<<< HEAD
     this.distanciaOla = 0;
+=======
+    this.distanciaOla = 500;
+>>>>>>> e73f315b59dfa586675dda513cdc0a71aecf8bd3
     this.animation = animation;
     this.w = this.animation[0].width;
     this.len = this.animation.length;
