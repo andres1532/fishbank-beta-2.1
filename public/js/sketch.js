@@ -383,7 +383,7 @@ function setup(){
   }
 
   //numero de olas
- for (let i = 0; i < 13; i++){
+ for (let i = 0; i < 12; i++){
       heroes[i] = new Sprite(animation, 0 , i * 48, random(0.12,   0.138));
   }
 
@@ -540,11 +540,12 @@ function Zone(){
   //zonas del mar
   textSize(15);
   textFont('segoe ui');
-  fill(150,150,150);  
+  textStyle(BOLD);
+  fill(255,233,0);  
   noStroke();
-  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 650);
-  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 650);
-  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 650);
+  Txtzone1 = text('Zona Costera:' + '\nNiveles de barcos: 1,2,3,4', 250, 15);
+  Txtzone2 = text('Zona Aguas profundas:' + '\nNiveles de barcos: 3 y 4', 500, 15);
+  Txtzone3 = text('Zona Altamar:' + '\nNiveles de barcos: 4', 800, 15);
   }
 
 //-------------------------------------------CLASE BARCO-------------------------------------------------------------
@@ -930,7 +931,7 @@ class Ship{
 class Sprite {
   constructor(animation, x, y, speed, distanciaOla) {
     this.x = 250;
-    this.y = y;
+    this.y = y + 50;
     this.distanciaOla = 500;
     this.animation = animation;
     this.w = this.animation[0].width;
