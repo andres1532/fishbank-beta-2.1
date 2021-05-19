@@ -632,7 +632,7 @@ class Ship{
     if(Mousedistance >= 20 && Mousedistance <= 80 && keyIsPressed === true){
       stroke(0,255,0);
       noFill();
-      rect(this.x1 - 5, this.y1 - 5, 90, 65);
+      rect(this.x1 - 5, this.y1 - 5, 60, 40);
     }
     else{
       console.log("nada")
@@ -708,7 +708,7 @@ class Ship{
     if (distance >= 20 && distance <= 80 && this.y1 < 458){
         //b=255
         fill(255, 255, 255);
-        rect(this.x1, this.y1 + 70, 200, 100);
+        rect(this.x1, this.y1 + 50, 200, 100);
 
         //barras de progreso Pesca y Gasolina
         this.ProgressbarGas();
@@ -726,7 +726,7 @@ class Ship{
     if(distance >= 20 && distance <= 80 && this.y1 > 458){
       //b=255
       fill(255, 255, 255);
-      rect(this.x1, this.y1 - 110, 200, 100);
+      rect(this.x1, this.y1 - 0, 200, 100);
       
       //barras de progreso Pesca y Gasolina
       this.ProgressbarGas();
@@ -748,10 +748,10 @@ class Ship{
       fill(0);
       textSize(12);
       textFont('segoe ui');
-      let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 85);
+      let txt = text('Gas: ' + ' ' + valorInicial + '%', this.x1 + 10, this.y1 + 65);
       
       fill(255, 70, 35);
-      rect(this.x1 + 20, this.y1 + 95, progreso, 20, 15);
+      rect(this.x1 + 20, this.y1 + 75, progreso, 20, 15);
       //noStroke();
       //noFill();
       //rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);
@@ -787,13 +787,13 @@ class Ship{
       fill(0);
       textSize(12);
       textFont('segoe ui');
-      let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 130);
+      let txt2 = text('Pesca: ' + ' ' + valorInicialPesca + '%', this.x1 + 10, this.y1 + 110);
       
       fill(50, 50, 255);  
       stroke(100, 100, 100);
-      rect(this.x1 + 20, this.y1 + 140, progresoPesca, 20, 15);
+      rect(this.x1 + 20, this.y1 + 120, progresoPesca, 20, 15);
       noFill();
-      rect(this.x1 + 20, this.y1 + 95, 150, 20, 15);//cuadro sin relleno
+      rect(this.x1 + 20, this.y1 + 75, 150, 20, 15);//cuadro sin relleno
       //noStroke();
     }
 
